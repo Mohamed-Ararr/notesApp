@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.dark,
-        canvasColor: const Color.fromRGBO(16, 15, 32, 1),
       ),
       home: const MyHomePage(),
     );
