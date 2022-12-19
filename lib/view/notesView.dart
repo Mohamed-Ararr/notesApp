@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
+import 'package:intl/intl.dart';
+import 'package:noteapp/view/widgets/noteCard.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({Key? key}) : super(key: key);
@@ -18,29 +20,7 @@ class NotesView extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blueGrey,
-            ),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text('Flutter Note'),
-                  subtitle: Text('Note details'),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.delete),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text('${DateTime.now()}'),
-                ),
-              ],
-            ),
-          );
+          return const NoteCard();
         },
       ),
     );
