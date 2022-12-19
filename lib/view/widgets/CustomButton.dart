@@ -11,7 +11,10 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: mainColor,
-        minimumSize: Size(MediaQuery.of(context).size.width, 55),
+        textStyle: const TextStyle(
+          fontSize: 18,
+        ),
+        minimumSize: Size(MediaQuery.of(context).size.width, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

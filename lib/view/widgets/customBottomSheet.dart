@@ -14,7 +14,7 @@ class CustomBottomSheet extends StatelessWidget {
           topLeft: Radius.circular(20),
         ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: MediaQuery.of(context).size.height / 1,
       child: SingleChildScrollView(
         child: Column(
@@ -27,14 +27,14 @@ class CustomBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             const CustomTextField(hint: 'Title'),
             const SizedBox(height: 15),
             const CustomTextField(
               hint: 'Content',
               maxL: 5,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
             CustomButton(buttonTitle: 'Save'),
           ],
         ),

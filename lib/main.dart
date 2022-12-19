@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/view/EditNote.dart';
 import 'package:noteapp/view/notesView.dart';
 
 void main() {
@@ -10,6 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        EditNoteView.id: (context) => const EditNoteView(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

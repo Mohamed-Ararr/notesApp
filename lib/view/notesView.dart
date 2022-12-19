@@ -16,8 +16,10 @@ class NotesView extends StatelessWidget {
         title: const Text('Notes'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: const [
-          CustomSearchButton(),
+        actions: [
+          CustomSearchButton(
+            icon: const Icon(Icons.search),
+          ),
         ],
       ),
       body: ListView.builder(
