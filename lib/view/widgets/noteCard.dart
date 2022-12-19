@@ -7,11 +7,12 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10, right: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 15, right: 15, bottom: 15),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black38,
+        color: const Color(0xffffcc80),
+        // color: Color.fromARGB(255, 219, 171, 126),
       ),
       child: Column(
         children: [
@@ -21,23 +22,30 @@ class NoteCard extends StatelessWidget {
               child: Text('Flutter Note',
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   )),
             ),
             subtitle: const Text(
-              'Note details, flutter is a framework used to build mobile application for both android and ios',
+              'Note details, flutter is a framework',
               style: TextStyle(
+                color: Colors.black54,
                 fontSize: 16,
               ),
             ),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.delete_outline),
+            trailing: InkWell(
+              onTap: () {},
+              child: const Icon(
+                Icons.delete_outline,
+                color: Colors.black,
+              ),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Text(DateFormat.yMMMd().format(DateTime.now()).toString()),
+            child: Text(
+              DateFormat.yMMMd().format(DateTime.now()).toString(),
+              style: const TextStyle(color: Colors.black),
+            ),
           ),
         ],
       ),

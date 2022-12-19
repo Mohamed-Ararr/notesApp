@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
-import 'package:intl/intl.dart';
+import 'package:noteapp/view/widgets/floatingButton.dart';
 import 'package:noteapp/view/widgets/noteCard.dart';
 
 class NotesView extends StatelessWidget {
@@ -11,11 +11,14 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: const FloatingButton(),
       appBar: AppBar(
         title: const Text('Notes'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: [const CustomSearchButton()],
+        actions: const [
+          CustomSearchButton(),
+        ],
       ),
       body: ListView.builder(
         itemCount: 10,
