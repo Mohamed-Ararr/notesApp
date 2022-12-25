@@ -28,9 +28,9 @@ class EditNoteView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: SingleChildScrollView(
           child: Column(children: [
-            const CustomTextField(hint: 'Edited title'),
+            CustomTextField(hint: 'Edited title'),
             const SizedBox(height: 15),
-            const CustomTextField(hint: 'Edited content', maxL: 5),
+            CustomTextField(hint: 'Edited content', maxL: 5),
             const SizedBox(height: 30),
             CustomButton(buttonTitle: 'Save Edits'),
           ]),

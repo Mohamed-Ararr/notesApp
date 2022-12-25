@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/constValues.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({Key? key, required this.buttonTitle}) : super(key: key);
+  CustomButton({Key? key, required this.buttonTitle, this.onPressed})
+      : super(key: key);
 
-  String buttonTitle;
+  final String buttonTitle;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(buttonTitle),
     );
   }
