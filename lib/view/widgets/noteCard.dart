@@ -41,6 +41,7 @@ class NoteCard extends StatelessWidget {
                 child: const Icon(
                   Icons.delete_outline,
                   color: Colors.black,
+                  size: 30,
                 ),
               ),
             ),
