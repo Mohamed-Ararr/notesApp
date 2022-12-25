@@ -21,8 +21,7 @@ class CustomBottomSheet extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: MediaQuery.of(context).size.height / 1,
-      child: SingleChildScrollView(
-          child: BlocConsumer<AddNotesCubit, AddNoteState>(
+      child: BlocConsumer<AddNotesCubit, AddNoteState>(
         listener: (context, state) {
           if (state is AddNoteFailure) {
             print('operation failed, ${state.errorMsg}');
@@ -34,11 +33,12 @@ class CustomBottomSheet extends StatelessWidget {
         },
         builder: (context, state) {
           return ModalProgressHUD(
+            color: Colors.white,
             inAsyncCall: state is AddNoteLoading ? true : false,
-            child: const FormNote(),
+            child: const SingleChildScrollView(child: FormNote()),
           );
         },
-      )),
+      ),
     );
   }
 }
