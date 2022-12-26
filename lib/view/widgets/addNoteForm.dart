@@ -29,6 +29,7 @@ class _FormNoteState extends State<FormNote> {
       child: Column(
         children: [
           Container(
+            margin: const EdgeInsets.only(top: 10),
             height: 5,
             width: MediaQuery.of(context).size.width / 3,
             decoration: BoxDecoration(
@@ -37,19 +38,26 @@ class _FormNoteState extends State<FormNote> {
             ),
           ),
           const SizedBox(height: 15),
-          CustomTextField(
-            hint: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
+          Container(
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomTextField(
+              hint: 'Title',
+              onSaved: (value) {
+                title = value;
+              },
+            ),
           ),
           const SizedBox(height: 15),
-          CustomTextField(
-            hint: 'Content',
-            maxL: 5,
-            onSaved: (value) {
-              content = value;
-            },
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomTextField(
+              hint: 'Content',
+              maxL: 5,
+              onSaved: (value) {
+                content = value;
+              },
+            ),
           ),
           const SizedBox(height: 15),
           CustomButton(

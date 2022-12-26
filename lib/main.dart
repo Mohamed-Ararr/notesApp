@@ -22,22 +22,17 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AddNotesCubit()),
-      ],
-      child: MaterialApp(
-        routes: {
-          EditNoteView.id: (context) => const EditNoteView(),
-        },
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-          brightness: Brightness.dark,
-        ),
-        home: const MyHomePage(),
+    return MaterialApp(
+      routes: {
+        EditNoteView.id: (context) => const EditNoteView(),
+      },
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        brightness: Brightness.dark,
       ),
+      home: const MyHomePage(),
     );
   }
 }

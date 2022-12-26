@@ -12,32 +12,46 @@ class CustomBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          topLeft: Radius.circular(20),
+    return BlocProvider(
+      create: (context) => AddNotesCubit(),
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
         ),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      height: MediaQuery.of(context).size.height / 1,
-      child: BlocConsumer<AddNotesCubit, AddNoteState>(
-        listener: (context, state) {
-          if (state is AddNoteFailure) {
-            print('operation failed, ${state.errorMsg}');
-          }
+        // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        height: MediaQuery.of(context).size.height / 1,
+        child: BlocConsumer<AddNotesCubit, AddNoteState>(
+          listener: (context, state) {
+            if (state is AddNoteFailure) {
+              print('operation failed, ${state.errorMsg}');
+            }
 
-          if (state is AddNoteSuccess) {
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return ModalProgressHUD(
-            color: Colors.white,
-            inAsyncCall: state is AddNoteLoading ? true : false,
-            child: const SingleChildScrollView(child: FormNote()),
-          );
-        },
+            if (state is AddNoteSuccess) {
+              print('operation success, ${state.toString()}');
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: ModalProgressHUD(
+                opacity: 0.1,
+                blur: 2,
+                color: Colors.white,
+                inAsyncCall: state is AddNoteLoading ? true : false,
+                child: const SingleChildScrollView(
+                  child: FormNote(),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
