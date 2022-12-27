@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:noteapp/cubits/addNoteCubit/add_note_cubits.dart';
+import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 
 import 'addNoteForm.dart';
 
@@ -28,11 +30,12 @@ class CustomBottomSheet extends StatelessWidget {
         child: BlocConsumer<AddNotesCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
-              print('operation failed, ${state.errorMsg}');
+              debugPrint('operation failed, ${state.errorMsg}');
             }
 
             if (state is AddNoteSuccess) {
-              print('operation success, ${state.toString()}');
+              BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
+              debugPrint('operation success, ${state.toString()}');
               Navigator.pop(context);
             }
           },

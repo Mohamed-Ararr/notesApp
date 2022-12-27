@@ -17,22 +17,19 @@ class NotesView extends StatefulWidget {
 class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateNotesCubit(),
-      child: Scaffold(
-        floatingActionButton: const FloatingButton(),
-        appBar: AppBar(
-          title: const Text('Notes'),
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          actions: [
-            CustomSearchButton(
-              icon: const Icon(Icons.search),
-            ),
-          ],
-        ),
-        body: const NotesListView(),
+    return Scaffold(
+      floatingActionButton: const FloatingButton(),
+      appBar: AppBar(
+        title: const Text('Notes'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          CustomSearchButton(
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
+      body: const NotesListView(),
     );
   }
 }
