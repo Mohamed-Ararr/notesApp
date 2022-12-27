@@ -7,6 +7,8 @@ import 'package:noteapp/simpleBlocObserver.dart';
 import 'package:noteapp/view/EditNote.dart';
 import 'package:noteapp/view/notesView.dart';
 
+import 'cubits/createNoteCubit/create_note_cubits.dart';
+
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());

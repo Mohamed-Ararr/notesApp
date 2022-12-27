@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
+import 'package:noteapp/model/noteModel.dart';
 
 import '../EditNote.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({Key? key}) : super(key: key);
+  const NoteCard({Key? key, required this.note}) : super(key: key);
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -15,29 +20,34 @@ class NoteCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: const Color(0xffffcc80),
+          // color: const Color(0xffffcc80),
+          color: Color(note.color),
           // color: Color.fromARGB(255, 219, 171, 126),
         ),
         child: Column(
           children: [
             ListTile(
-              title: const Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: Text('Flutter Note',
-                    style: TextStyle(
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(note.title,
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                     )),
               ),
-              subtitle: const Text(
-                'Note details, flutter is a framework',
-                style: TextStyle(
+              subtitle: Text(
+                note.content,
+                style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
                 ),
               ),
               trailing: InkWell(
-                onTap: () {},
+                onTap: () {
+                  List<NoteModel> notesList =
+                      BlocProvider.of<CreateNotesCubit>(context).noteList ?? [];
+                  notesList.removeWhere((item) => item.title == note.title);
+                },
                 child: const Icon(
                   Icons.delete_outline,
                   color: Colors.black,
