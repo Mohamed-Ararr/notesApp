@@ -1,14 +1,30 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 import 'package:noteapp/view/widgets/CustomButton.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
 import 'package:noteapp/view/widgets/customTextField.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({Key? key}) : super(key: key);
+import '../cubits/addNoteCubit/add_note_cubits.dart';
+import '../model/noteModel.dart';
+
+class EditNoteView extends StatefulWidget {
+  const EditNoteView({Key? key, required this.note}) : super(key: key);
+
+  final NoteModel note;
 
   static String id = "EditNoteView";
+
+  @override
+  State<EditNoteView> createState() => _EditNoteViewState();
+}
+
+class _EditNoteViewState extends State<EditNoteView> {
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  String? newTitle, newContent;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +40,47 @@ class EditNoteView extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        // child: FormNote(),
+        child: Form(
+          key: formKey,
           child: Column(children: [
-            CustomTextField(hint: 'Edited title'),
             const SizedBox(height: 15),
-            CustomTextField(hint: 'Edited content', maxL: 5),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomTextField(
+                hint: widget.note.title,
+                onChanged: (value) {
+                  newTitle = value;
+                },
+              ),
+            ),
+            const SizedBox(height: 15),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomTextField(
+                hint: widget.note.content,
+                maxL: 5,
+                onChanged: (value) {
+                  newContent = value;
+                },
+              ),
+            ),
             const SizedBox(height: 30),
-            CustomButton(buttonTitle: 'Save Edits'),
+            CustomButton(
+              buttonTitle: 'Save',
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  widget.note.title = newTitle ?? widget.note.title;
+                  widget.note.content = newContent ?? widget.note.content;
+                  widget.note.save();
+                  BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
+                  Navigator.pop(context);
+                } else {}
+              },
+            ),
           ]),
         ),
       ),

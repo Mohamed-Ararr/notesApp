@@ -39,6 +39,7 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   modal_progress_hud_nsn: ^0.3.0
+  top_snackbar_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:

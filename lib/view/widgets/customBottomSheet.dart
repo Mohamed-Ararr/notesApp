@@ -14,48 +14,56 @@ class CustomBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddNotesCubit(),
-      child: Container(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
-          ),
+    return Container(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
         ),
-        // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        // height: MediaQuery.of(context).size.height / 1,
-        child: BlocConsumer<AddNotesCubit, AddNoteState>(
-          listener: (context, state) {
-            if (state is AddNoteFailure) {
-              debugPrint('operation failed, ${state.errorMsg}');
-            }
+      ),
+      child: BlocConsumer<AddNotesCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteFailure) {
+            debugPrint('operation failed, ${state.errorMsg}');
+          }
 
-            if (state is AddNoteSuccess) {
-              BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
-              debugPrint('operation success, ${state.toString()}');
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-              child: ModalProgressHUD(
-                opacity: 0.15,
-                blur: 2,
-                inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const SingleChildScrollView(
-                  child: FormNote(),
+          if (state is AddNoteSuccess) {
+            BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
+            debugPrint('operation success, ${state.toString()}');
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            child: ModalProgressHUD(
+              opacity: 0.15,
+              blur: 2,
+              inAsyncCall: state is AddNoteLoading ? true : false,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      height: 5,
+                      width: MediaQuery.of(context).size.width / 3,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    const FormNote(),
+                  ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

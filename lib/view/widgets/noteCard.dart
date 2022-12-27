@@ -16,14 +16,15 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, EditNoteView.id),
+      onTap: () => Navigator.push(context,
+          MaterialPageRoute(builder: (context) => EditNoteView(note: note))),
       child: Container(
         padding: const EdgeInsets.only(top: 15, right: 15, bottom: 15),
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          // color: const Color(0xffffcc80),
-          color: Color(note.color),
+          color: const Color(0xffffcc80),
+          // color: Color(note.color),
           // color: Color.fromARGB(255, 219, 171, 126),
         ),
         child: Column(

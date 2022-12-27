@@ -28,15 +28,6 @@ class _FormNoteState extends State<FormNote> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            height: 5,
-            width: MediaQuery.of(context).size.width / 3,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
           const SizedBox(height: 15),
           Container(
             height: 50,
@@ -67,10 +58,11 @@ class _FormNoteState extends State<FormNote> {
                 formKey.currentState!.save();
 
                 var noteModel = NoteModel(
-                    title: title!,
-                    content: content!,
-                    date: DateTime.now().toIso8601String(),
-                    color: Colors.blue.value);
+                  title: title!,
+                  content: content!,
+                  date: DateTime.now().toIso8601String(),
+                  color: Colors.blue.value,
+                );
 
                 BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
               } else {

@@ -22,12 +22,13 @@ class _NotesViewState extends State<NotesView> {
       appBar: AppBar(
         title: const Text('Notes'),
         elevation: 0,
+        centerTitle: true,
         backgroundColor: Colors.transparent,
-        actions: [
-          CustomSearchButton(
-            icon: const Icon(Icons.search),
-          ),
-        ],
+        // actions: [
+        //   CustomSearchButton(
+        //     icon: const Icon(Icons.search),
+        //   ),
+        // ],
       ),
       body: const NotesListView(),
     );
