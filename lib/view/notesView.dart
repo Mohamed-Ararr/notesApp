@@ -6,10 +6,16 @@ import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
 import 'package:noteapp/view/widgets/floatingButton.dart';
 import 'package:noteapp/view/widgets/noteCard.dart';
+import 'package:noteapp/view/widgets/notesListView.dart';
 
-class NotesView extends StatelessWidget {
+class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
 
+  @override
+  State<NotesView> createState() => _NotesViewState();
+}
+
+class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,12 +32,7 @@ class NotesView extends StatelessWidget {
             ),
           ],
         ),
-        body: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return const NoteCard();
-          },
-        ),
+        body: const NotesListView(),
       ),
     );
   }
