@@ -1,16 +1,21 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 import 'package:noteapp/model/noteModel.dart';
 
 import '../EditNote.dart';
 
-class NoteCard extends StatelessWidget {
+class NoteCard extends StatefulWidget {
   const NoteCard({Key? key, required this.note}) : super(key: key);
 
   final NoteModel note;
 
+  @override
+  State<NoteCard> createState() => _NoteCardState();
+}
+
+class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -21,7 +26,7 @@ class NoteCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           // color: const Color(0xffffcc80),
-          color: Color(note.color),
+          color: Color(widget.note.color),
           // color: Color.fromARGB(255, 219, 171, 126),
         ),
         child: Column(
@@ -29,14 +34,14 @@ class NoteCard extends StatelessWidget {
             ListTile(
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(note.title,
+                child: Text(widget.note.title,
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                     )),
               ),
               subtitle: Text(
-                note.content,
+                widget.note.content,
                 style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
@@ -44,9 +49,8 @@ class NoteCard extends StatelessWidget {
               ),
               trailing: InkWell(
                 onTap: () {
-                  List<NoteModel> notesList =
-                      BlocProvider.of<CreateNotesCubit>(context).noteList ?? [];
-                  notesList.removeWhere((item) => item.title == note.title);
+                  widget.note.delete();
+                  setState(() {});
                 },
                 child: const Icon(
                   Icons.delete_outline,
