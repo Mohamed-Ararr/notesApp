@@ -10,6 +10,7 @@ class FloatingButton extends StatelessWidget {
       backgroundColor: Colors.black.withAlpha(150),
       onPressed: () {
         showModalBottomSheet(
+            isScrollControlled: true,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),

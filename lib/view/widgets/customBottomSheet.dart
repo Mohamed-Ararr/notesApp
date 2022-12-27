@@ -15,6 +15,8 @@ class CustomBottomSheet extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddNotesCubit(),
       child: Container(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(20),
@@ -22,7 +24,7 @@ class CustomBottomSheet extends StatelessWidget {
           ),
         ),
         // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        height: MediaQuery.of(context).size.height / 1,
+        // height: MediaQuery.of(context).size.height / 1,
         child: BlocConsumer<AddNotesCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
@@ -41,9 +43,8 @@ class CustomBottomSheet extends StatelessWidget {
                 topRight: Radius.circular(20),
               ),
               child: ModalProgressHUD(
-                opacity: 0.1,
+                opacity: 0.15,
                 blur: 2,
-                color: Colors.white,
                 inAsyncCall: state is AddNoteLoading ? true : false,
                 child: const SingleChildScrollView(
                   child: FormNote(),
