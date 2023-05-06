@@ -14,6 +14,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(noteBox);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
@@ -29,7 +30,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'Poppins',
           brightness: Brightness.dark,
