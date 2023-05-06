@@ -24,6 +24,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   GlobalKey<FormState> formKey = GlobalKey();
 
   String? newTitle, newContent;
+  AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -41,46 +42,47 @@ class _EditNoteViewState extends State<EditNoteView> {
       ),
       body: SingleChildScrollView(
         // child: FormNote(),
-        child: Form(
-          key: formKey,
-          child: Column(children: [
-            const SizedBox(height: 15),
-            Container(
-              height: 50,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomTextField(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Form(
+            autovalidateMode: autovalidateMode,
+            key: formKey,
+            child: Column(children: [
+              const SizedBox(height: 15),
+              CustomTextField(
                 hint: widget.note.title,
                 onChanged: (value) {
                   newTitle = value;
                 },
               ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomTextField(
+              const SizedBox(height: 15),
+              CustomTextField(
                 hint: widget.note.content,
                 maxL: 5,
                 onChanged: (value) {
                   newContent = value;
                 },
               ),
-            ),
-            const SizedBox(height: 30),
-            CustomButton(
-              buttonTitle: 'Save',
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  widget.note.title = newTitle ?? widget.note.title;
-                  widget.note.content = newContent ?? widget.note.content;
-                  widget.note.save();
-                  BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
-                  Navigator.pop(context);
-                } else {}
-              },
-            ),
-          ]),
+              const SizedBox(height: 30),
+              CustomButton(
+                buttonTitle: 'Save',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    widget.note.title = newTitle ?? widget.note.title;
+                    widget.note.content = newContent ?? widget.note.content;
+                    widget.note.save();
+                    BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
+                    Navigator.pop(context);
+                  } else {
+                    setState(() {
+                      autovalidateMode = AutovalidateMode.always;
+                    });
+                  }
+                },
+              ),
+            ]),
+          ),
         ),
       ),
     );

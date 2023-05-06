@@ -22,13 +22,13 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       onSaved: onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Field required!';
-        } else {
-          return null;
-        }
-      },
+      // validator: (value) {
+      //   if (value == null || value.isEmpty) {
+      //     return 'Field required!';
+      //   } else {
+      //     return null;
+      //   }
+      // },
       maxLines: maxL,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(

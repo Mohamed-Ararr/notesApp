@@ -27,59 +27,55 @@ class _FormNoteState extends State<FormNote> {
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          const SizedBox(height: 15),
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomTextField(
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            const SizedBox(height: 15),
+            CustomTextField(
               hint: 'Title',
               onSaved: (value) {
                 title = value;
               },
             ),
-          ),
-          const SizedBox(height: 15),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomTextField(
+            const SizedBox(height: 15),
+            CustomTextField(
               hint: 'Content',
               maxL: 5,
               onSaved: (value) {
                 content = value;
               },
             ),
-          ),
-          const SizedBox(height: 15),
-          CustomButton(
-            buttonTitle: 'Save',
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
+            const SizedBox(height: 15),
+            CustomButton(
+              buttonTitle: 'Add',
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
 
-                var noteModel = NoteModel(
-                  title: title!,
-                  content: content!,
-                  date: DateTime.now().toIso8601String(),
-                  color: Colors.blue.value,
-                );
+                  var noteModel = NoteModel(
+                    title: title!,
+                    content: content!,
+                    date: DateTime.now().toIso8601String(),
+                    color: Colors.blue.value,
+                  );
 
-                showTopSnackBar(
-                  Overlay.of(context),
-                  const CustomSnackBar.success(
-                    message: 'Note added successfully!',
-                  ),
-                );
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    const CustomSnackBar.success(
+                      message: 'Note added successfully!',
+                    ),
+                  );
 
-                BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
-            },
-          ),
-        ],
+                  BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
