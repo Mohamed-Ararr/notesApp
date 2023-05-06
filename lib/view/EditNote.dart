@@ -7,7 +7,6 @@ import 'package:noteapp/view/widgets/CustomButton.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
 import 'package:noteapp/view/widgets/customTextField.dart';
 
-import '../cubits/addNoteCubit/add_note_cubits.dart';
 import '../model/noteModel.dart';
 
 class EditNoteView extends StatefulWidget {
@@ -34,9 +33,9 @@ class _EditNoteViewState extends State<EditNoteView> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        actions: [
+        actions: const [
           CustomSearchButton(
-            icon: const Icon(Icons.check),
+            icon: Icon(Icons.check),
           ),
         ],
       ),

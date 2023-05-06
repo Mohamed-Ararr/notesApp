@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class CustomSearchButton extends StatelessWidget {
-  CustomSearchButton({Key? key, required this.icon}) : super(key: key);
+  const CustomSearchButton({Key? key, required this.icon}) : super(key: key);
 
-  Icon icon;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {

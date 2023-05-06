@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/cubits/addNoteCubit/add_note_cubits.dart';
 import 'package:noteapp/model/noteModel.dart';
-
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'CustomButton.dart';
 import 'customTextField.dart';
 
@@ -62,6 +63,13 @@ class _FormNoteState extends State<FormNote> {
                   content: content!,
                   date: DateTime.now().toIso8601String(),
                   color: Colors.blue.value,
+                );
+
+                showTopSnackBar(
+                  Overlay.of(context),
+                  const CustomSnackBar.success(
+                    message: 'Note added successfully!',
+                  ),
                 );
 
                 BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);

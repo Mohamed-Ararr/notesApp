@@ -1,9 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
-import 'package:noteapp/view/widgets/customSearchButton.dart';
 import 'package:noteapp/view/widgets/floatingButton.dart';
 import 'package:noteapp/view/widgets/notesListView.dart';
 
