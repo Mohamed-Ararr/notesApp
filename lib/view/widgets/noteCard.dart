@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 import 'package:noteapp/model/noteModel.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../EditNote.dart';
 
@@ -36,17 +38,24 @@ class NoteCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
+                      fontWeight: FontWeight.w600,
                     )),
               ),
               subtitle: Text(
                 note.content,
                 style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
+                  color: Color.fromARGB(192, 0, 0, 0),
+                  fontSize: 15,
                 ),
               ),
               trailing: InkWell(
                 onTap: () {
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    const CustomSnackBar.error(
+                      message: 'Note Deleted!',
+                    ),
+                  );
                   note.delete();
                   BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
                 },
@@ -60,7 +69,7 @@ class NoteCard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                DateFormat.yMMMd().format(DateTime.now()).toString(),
+                DateFormat.yMMMd().format(DateTime.parse(note.date)).toString(),
                 style: const TextStyle(color: Colors.black),
               ),
             ),

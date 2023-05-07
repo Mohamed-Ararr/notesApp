@@ -6,7 +6,6 @@ import 'package:noteapp/constValues.dart';
 import 'package:noteapp/cubits/addNoteCubit/add_note_cubits.dart';
 import 'package:noteapp/model/noteModel.dart';
 import 'package:noteapp/simpleBlocObserver.dart';
-import 'package:noteapp/view/notesView.dart';
 
 import 'cubits/createNoteCubit/create_note_cubits.dart';
 import 'view/splashView.dart';

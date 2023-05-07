@@ -31,6 +31,7 @@ class _NotesListViewState extends State<NotesListView> {
       return notesList.isEmpty
           ? const EmptyNotes()
           : ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: notesList.length,
               itemBuilder: (context, index) {
                 return NoteCard(

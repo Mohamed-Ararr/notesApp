@@ -6,6 +6,8 @@ import 'package:noteapp/cubits/createNoteCubit/create_note_cubits.dart';
 import 'package:noteapp/view/widgets/CustomButton.dart';
 import 'package:noteapp/view/widgets/customSearchButton.dart';
 import 'package:noteapp/view/widgets/customTextField.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../model/noteModel.dart';
 
@@ -50,6 +52,8 @@ class _EditNoteViewState extends State<EditNoteView> {
             child: Column(children: [
               const SizedBox(height: 15),
               CustomTextField(
+                isAddNote: false,
+                maxLength: 20,
                 hint: widget.note.title,
                 onChanged: (value) {
                   newTitle = value;
@@ -57,6 +61,7 @@ class _EditNoteViewState extends State<EditNoteView> {
               ),
               const SizedBox(height: 15),
               CustomTextField(
+                isAddNote: false,
                 hint: widget.note.content,
                 maxL: 5,
                 onChanged: (value) {
@@ -69,8 +74,17 @@ class _EditNoteViewState extends State<EditNoteView> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+                    if (newTitle != null || newContent != null) {
+                      showTopSnackBar(
+                        Overlay.of(context),
+                        const CustomSnackBar.info(
+                          message: 'Note Edited!',
+                        ),
+                      );
+                    }
                     widget.note.title = newTitle ?? widget.note.title;
                     widget.note.content = newContent ?? widget.note.content;
+                    widget.note.date = DateTime.now().toIso8601String();
                     widget.note.save();
                     BlocProvider.of<CreateNotesCubit>(context).fetchAllNotes();
                     Navigator.pop(context);

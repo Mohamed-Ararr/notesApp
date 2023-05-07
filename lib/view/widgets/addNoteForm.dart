@@ -33,6 +33,7 @@ class _FormNoteState extends State<FormNote> {
           children: [
             const SizedBox(height: 15),
             CustomTextField(
+              maxLength: 20,
               hint: 'Title',
               onSaved: (value) {
                 title = value;
@@ -63,7 +64,7 @@ class _FormNoteState extends State<FormNote> {
                   showTopSnackBar(
                     Overlay.of(context),
                     const CustomSnackBar.success(
-                      message: 'Note added successfully!',
+                      message: 'Note Added!',
                     ),
                   );
 
