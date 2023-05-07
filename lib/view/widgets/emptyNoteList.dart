@@ -8,7 +8,12 @@ class EmptyNotes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('There is no note right now!'),
+      child: Text(
+        'There is no note right now!',
+        style: TextStyle(
+          fontSize: 18,
+        ),
+      ),
     );
   }
 }

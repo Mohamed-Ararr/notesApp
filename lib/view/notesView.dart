@@ -17,7 +17,7 @@ class _NotesViewState extends State<NotesView> {
     return Scaffold(
       floatingActionButton: const FloatingButton(),
       appBar: AppBar(
-        title: const Text('Notes'),
+        title: const Text('NotePad'),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
