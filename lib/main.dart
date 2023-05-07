@@ -9,6 +9,7 @@ import 'package:noteapp/simpleBlocObserver.dart';
 import 'package:noteapp/view/notesView.dart';
 
 import 'cubits/createNoteCubit/create_note_cubits.dart';
+import 'view/splashView.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -49,6 +50,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const NotesView();
+    return const SplashView();
   }
 }
