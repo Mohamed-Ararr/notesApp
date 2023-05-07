@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/view/widgets/appSlogan.dart';
 
 import '../notesView.dart';
+import 'logoAndTitle.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -25,39 +27,12 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/notepad.png",
-                  scale: 7,
-                ),
-                const SizedBox(width: 10),
-                const Text(
-                  "NotePad",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: const Text(
-                "Write it down, remember it forever!",
-                style: TextStyle(
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 20),
+          children: const [
+            Spacer(),
+            LogoAndTitle(),
+            Spacer(),
+            AppSlogan(),
+            SizedBox(height: 20),
           ],
         ),
       ),
