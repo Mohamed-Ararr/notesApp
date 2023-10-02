@@ -18,7 +18,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void initState() {
     super.initState();
     Future.delayed(
-        const Duration(seconds: 3),
+        const Duration(milliseconds: 1500),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const NotesView())));
   }
